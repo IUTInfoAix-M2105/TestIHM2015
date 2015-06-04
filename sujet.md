@@ -6,7 +6,7 @@ L'objet de ce test est l'écriture en Java de l'IHM d'une version simplifiée du
 
 Il se présente sous la forme d'un plateau perforé de 10 rangées de quatre trous pouvant accueillir des pions de couleurs.
 
-Le nombre de pions de couleurs différentes est de 8 et les huit couleurs sont généralement : rouge ; jaune ; vert ; bleu ; orange ; blanc ; violet ; fuchsia.
+Le nombre de pions de couleurs différentes est de 8 et les huit couleurs sont généralement : rouge ; jaune ; vert ; bleu ; orange ; marron ; violet ; fuchsia.
 
 Il y a également des pions blancs et rouges (ou noirs) utilisés pour donner des indications à chaque étape du jeu.
 
