@@ -41,10 +41,7 @@ public class MasterMind extends JFrame {
     private JPanel creerPanelCombinaisonSecrète() {
         JPanel panelCombinaisonSecrète = new JPanel();
         rangéeSecrète = new Rangée(NB_PIONS_PAR_RANGEES);
-
-        combinaisonSecrète = Combinaison.genererCombinaisonAléatoire(NB_PIONS_PAR_RANGEES);
-        rangéeSecrète.setCombinaison(combinaisonSecrète);
-        rangéeSecrète.setMasqué(true);
+        creerCombinaisonSecrete();
         panelCombinaisonSecrète.add(rangéeSecrète);
 
         return panelCombinaisonSecrète;
@@ -75,6 +72,9 @@ public class MasterMind extends JFrame {
         boutonValider.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
+                if (plateau.combinaisonCourante().contient(Pion.VIDE)) {
+                    return;
+                }
                 plateau.validerRangéeCourante(combinaisonSecrète);
                 if (plateau.estFinDePartie()) {
                     rangéeSecrète.setMasqué(false);
@@ -128,8 +128,13 @@ public class MasterMind extends JFrame {
     }
 
     private void actionMenuJeuNouveau() {
+        creerCombinaisonSecrete();
+        plateau.nouvellePartie();
+    }
+
+    private void creerCombinaisonSecrete() {
         combinaisonSecrète = Combinaison.genererCombinaisonAléatoire(NB_PIONS_PAR_RANGEES);
         rangéeSecrète.setCombinaison(combinaisonSecrète);
-        plateau.nouvellePartie();
+        rangéeSecrète.setMasqué(true);
     }
 }

@@ -70,19 +70,17 @@ public class Plateau extends JPanel {
 
     private int calculerNombrePionsMalsPlacés(Combinaison combinaisonSecrète) {
         int nombrePionsMalsPlacés = 0;
-        Combinaison combinaisonCourante = rangées[rangéeCourante].getCombinaison();
         for (int i = 0; i < combinaisonSecrète.nombrePions(); i++)
-            if (combinaisonSecrète.getPion(i) != combinaisonCourante.getPion(i)
-                    && combinaisonSecrète.contient(combinaisonCourante.getPion(i)))
+            if (combinaisonSecrète.getPion(i) != combinaisonCourante().getPion(i)
+                    && combinaisonSecrète.contient(combinaisonCourante().getPion(i)))
                 nombrePionsMalsPlacés++;
         return nombrePionsMalsPlacés;
     }
 
     private int calculerNombrePionsBiensPlacés(Combinaison combinaisonSecrète) {
         int nombrePionsBiensPlacés = 0;
-        Combinaison combinaisonCourante = rangées[rangéeCourante].getCombinaison();
         for (int i = 0; i < combinaisonSecrète.nombrePions(); i++)
-            if (combinaisonSecrète.getPion(i) == combinaisonCourante.getPion(i))
+            if (combinaisonSecrète.getPion(i) == combinaisonCourante().getPion(i))
                 nombrePionsBiensPlacés++;
         return nombrePionsBiensPlacés;
     }
@@ -97,5 +95,9 @@ public class Plateau extends JPanel {
 
     public boolean aGagné() {
         return aGagné;
+    }
+
+    public Combinaison combinaisonCourante() {
+        return rangées[rangéeCourante].getCombinaison();
     }
 }
