@@ -15,7 +15,7 @@ public class MasterMind extends JFrame {
 
     private Plateau plateau = new Plateau(NB_RANGEES, NB_PIONS_PAR_RANGEES);
     private Combinaison combinaisonSecrète;
-    private Rangée rangée;
+    private Rangée rangéeSecrète;
 
 
     private MasterMind() {
@@ -40,12 +40,13 @@ public class MasterMind extends JFrame {
 
     private JPanel creerPanelCombinaisonSecrète() {
         JPanel panelCombinaisonSecrète = new JPanel();
-        rangée = new Rangée(NB_PIONS_PAR_RANGEES);
+        rangéeSecrète = new Rangée(NB_PIONS_PAR_RANGEES);
 
         combinaisonSecrète = Combinaison.genererCombinaisonAléatoire(NB_PIONS_PAR_RANGEES);
-        rangée.setCombinaison(combinaisonSecrète);
+        rangéeSecrète.setCombinaison(combinaisonSecrète);
+        rangéeSecrète.setMasqué(true);
+        panelCombinaisonSecrète.add(rangéeSecrète);
 
-        panelCombinaisonSecrète.add(rangée);
         return panelCombinaisonSecrète;
     }
 
@@ -76,6 +77,7 @@ public class MasterMind extends JFrame {
             public void actionPerformed(ActionEvent e) {
                 plateau.validerRangéeCourante(combinaisonSecrète);
                 if (plateau.estFinDePartie()) {
+                    rangéeSecrète.setMasqué(false);
                     afficherDialogFinDePartie();
                 }
             }
@@ -127,7 +129,7 @@ public class MasterMind extends JFrame {
 
     private void actionMenuJeuNouveau() {
         combinaisonSecrète = Combinaison.genererCombinaisonAléatoire(NB_PIONS_PAR_RANGEES);
-        rangée.setCombinaison(combinaisonSecrète);
+        rangéeSecrète.setCombinaison(combinaisonSecrète);
         plateau.nouvellePartie();
     }
 }

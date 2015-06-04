@@ -29,7 +29,9 @@ public class Plateau extends JPanel {
             scores[i] = new ScoreRangée(nombrePionsParRangée);
 
             add(rangées[i]);
-            add(scores[i]);
+            JPanel panel = new JPanel();
+            panel.add(scores[i]);
+            add(panel);
         }
 
         rangées[0].setEnabled(true);

@@ -40,6 +40,12 @@ public class Rangée extends JPanel {
         }
     }
 
+    public void setMasqué(boolean masqué) {
+        for (BoutonPion pion : pions) {
+            pion.setMasqué(masqué);
+        }
+    }
+
     public void vider() {
         for (BoutonPion pion : pions) {
             pion.vider();

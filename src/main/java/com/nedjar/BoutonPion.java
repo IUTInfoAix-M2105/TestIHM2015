@@ -35,4 +35,11 @@ public class BoutonPion extends JButton {
         setIcon(pion.getIcon());
         setDisabledIcon(pion.getIcon());
     }
+
+    public void setMasqué(boolean masqué) {
+        if (masqué)
+            setDisabledIcon(Pion.VIDE.getIcon());
+        else
+            setDisabledIcon(pion.getIcon());
+    }
 }
