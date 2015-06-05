@@ -34,6 +34,12 @@ Le joueur actif gagne cette manche s'il donne la bonne combinaison de pions sur 
 Vous allez écrire l'IHM d'un Mastermind en mode joueur unique, qui doit trouver la combinaison choisie aléatoirement par l'ordinateur. Aussi, pour simplifier la suite du sujet, nous utiliserons le terme ordinateur à la place de joueur passif, et simplement le terme joueur pour joueur actif.  
 
 ## Travail à réaliser
+L'objectif de ce test est d'évaluer votre capacité à écrire une IHM à l'aide du langage Java, les méthodes complexes 
+car trop algorithmiques n'auront pas à être implémentées. Vous pourrez retrouver une proposition de correction à l'adresse suivante : https://github.com/IUTInfoAix/TestIHM2015/
+
+Le résultat attendu devra ressembler à la fenêtre suivante :
+![IHM](screenshoot.png)
+
 Votre travail dans la suite de ce sujet sera d'écrire pas à pas plusieurs classes importantes :
 - Un objet `MastermindIHM` est une fenêtre de jeu où le joueur pourra jouer contre l'ordinateur ;
 - Un objet `Plateau` représente le plateau de jeu composé des 10 rangées de 4 cases de jeu et de 4 cases de score ;
@@ -47,42 +53,38 @@ Votre travail dans la suite de ce sujet sera d'écrire pas à pas plusieurs clas
 
 Il y aura aussi plusieurs classes de moindre importance qui serviront d'outils pour les classes principales.
 
-L'objectif de ce test est d'évaluer votre capacité à écrire une IHM à l'aide du langage Java, les méthodes complexes 
-car trop algorithmiques n'auront pas à être implémentées. Vous pourrez retrouver une proposition de correction à l'adresse suivante : https://github.com/IUTInfoAix/TestIHM2015/
-
-Le résultat attendu devra ressembler à la fenêtre suivante :
-![IHM](screenshoot.png)
 
 
-### Implémentation de la classe `Pion`
-La classe `Pion` permet de représenter les pions de couleurs utilisés par le joueur actif. La responsabilité principale de cette classe est de conserver l'ensemble des pions ainsi que leur apparence.
 
-1. Écrire la classe `Pion` ayant pour commencer, une seule donnée membre privée. Elle se nommera `icon` de type `Icon` permettra de conserver l'image affichée dans les cases.
-2. Écrire le constructeur `Pion(String fileName)` qui crée l'`ImageIcon` à partir du nom de fichier passé en paramètre.
+### Implémentation de la classe `PionJeu`
+La classe `PionJeu` permet de représenter les pions de couleurs utilisés par le joueur actif. La responsabilité principale de cette classe est de conserver l'ensemble des pions ainsi que leur apparence.
+
+1. Écrire la classe `PionJeu` ayant pour commencer, une seule donnée membre privée. Elle se nommera `icon` de type `Icon` permettra de conserver l'image affichée dans les cases.
+2. Écrire le constructeur `PionJeu(String fileName)` qui crée l'`ImageIcon` à partir du nom de fichier passé en paramètre.
 3. Écrire l'accésseur `public Icon getIcon()` qui retourne la donnée membre `icon`.
 3. Les couleurs de pion étant connus à l'avance (`ROUGE`, `BLEU`, `FUCHSIA`, `JAUNE`, `MARRON`, `ORANGE`, `VERT` et `VIOLET`), leur création peut être faite de manière statique. Pour éviter d'avoir à complexifier notre code avec des valeurs nulles, un pion virtuel (`VIDE`) sera ajouté. Écrire la déclaration statiques des 3 première couleurs de pions  (`ROUGE`, `BLEU`, `FUCHSIA`) qui devront utiliser les images appelées "rouge.png", "bleu.png", "fuchsia.png". Pour la suite on considèrera que toutes les données membres ont été correctement initialisées.
-4. Écrire la méthode `public Pion suivant()` qui retourne le pion `BLEU` si le pion est `ROUGE` et `FUCHSIA` si le pion est `BLEU` et ainsi de suite. Pour vous faciliter l'écriture de cette méthode, il peut être astucieux de stocker vos pions précédement crée dans un tableau.
+4. Écrire la méthode `public PionJeu suivant()` qui retourne le pion `BLEU` si le pion est `ROUGE` et `FUCHSIA` si le pion est `BLEU` et ainsi de suite. Pour vous faciliter l'écriture de cette méthode, il peut être astucieux de stocker vos pions précédement crée dans un tableau.
 
-### Implémentation de la classe `CasePion`
+### Implémentation de la classe `CaseJeu`
 Pour réaliser le plateau de jeu, il nous faut des boutons sur lesquels on pourra déposer des pions. 
 
-Écrire la classe publique `CasePion` qui représente les boutons de notre plateau de jeu. Cette classe aura les caractéristiques suivantes :
+Écrire la classe publique `CaseJeu` qui représente les boutons de notre plateau de jeu. Cette classe aura les caractéristiques suivantes :
 - Elle étend la classe `JButton`.
 - Elle dispose une donnée membre privée nommée `pion` mémorisant le pion déposé sur la case. 
 - Elle possède un accèsseur et un modifieur publics pour cette donnée membre. Le modifieur à la responsabilité de changer l'icone de la case (avec la méthode `setIcon(ImageIcon icon)` héritée de la classe `JButton`).
-- Elle possède une méthode `void vider()` qui s'occupe d'enlever le pion de la case (penser à `Pion.VIDE`).
+- Elle possède une méthode `void vider()` qui s'occupe d'enlever le pion de la case (penser à `PionJeu.VIDE`).
 - Elle possède une méthode `void setMasqué(boolean masqué)` qui s'occupe de masquer/démasquer le pion contenu dans la case. Cette méthode sera utilisée par le joueur passif pour masquer sa combinaison et la montrer en fin de partie.
-- Elle dispose d'une donnée membre `boutonPionListener` du type `ActionListener`. Son initialisation sera faite en même temps que sa déclaration avec une classe anonyme qui surchagera la méthode `void actionPerformed(ActionEvent actionEvent)`. Cette surcharge fera en sorte qu'à chaque action sur une case, le pion déposé dessus passe au `suivant`.
+- Elle dispose d'une donnée membre `boutonPionJeuListener` du type `ActionListener`. Son initialisation sera faite en même temps que sa déclaration avec une classe anonyme qui surchagera la méthode `void actionPerformed(ActionEvent actionEvent)`. Cette surcharge fera en sorte qu'à chaque action sur une case, le pion déposé dessus passe au `suivant`.
 - Elle a un unique constructeur sans argument, qui vide la case, lui affecte un auditeur d'événements (l'`ActionListener` précédement créé), par défaut la case est inactive (avec `setEnabled(Boolean b)`).
 
 ### Implémentation de la classe `Combinaison`
 Pour pouvoir implémenter la logique du jeu, il faut disposer d'une abstraction permettant de comparer deux combinaisons de pion de couleur. 
 
-1. Écrire la classe publique `Combinaison` ayant deux données membres privée. La première appelée `taille` sera de type `int` et permettra de connaitre le nombre de pions qui constitue la combinaison. La seconde appelée `pions` sera un tableau de `Pion` qui conservera les couleurs constitutives de la combinaison.
-2. Écrire le constructeur `Combinaison(int taille)` qui initialise correctement les deux données membres. Par défaut, la combinaison sera vide (penser `Pion.VIDE`).
+1. Écrire la classe publique `Combinaison` ayant deux données membres privée. La première appelée `taille` sera de type `int` et permettra de connaitre le nombre de pions qui constitue la combinaison. La seconde appelée `pions` sera un tableau de `PionJeu` qui conservera les couleurs constitutives de la combinaison.
+2. Écrire le constructeur `Combinaison(int taille)` qui initialise correctement les deux données membres. Par défaut, la combinaison sera vide (penser `PionJeu.VIDE`).
 3. Écrire l'accesseur et le modifieur associés à la donnée membre privée `pions`.
 4. Écrire l'accesseur de la donnée membre `taille`.
-4. Écrire la méthode publique `boolean contient(Pion pion)` qui permet de savoir si un Pion appartient à une combinaison.
+4. Écrire la méthode publique `boolean contient(PionJeu pion)` qui permet de savoir si un `PionJeu` appartient à une combinaison.
 
 Pour la suite, on supose que l'on disposera de la méthode de classe `static Combinaison genererCombinaisonAléatoire(int taille)` qui permet comme son nom l'indique de générer une combinaison aléatoire.
 
@@ -92,19 +94,19 @@ La classe `Rangée` à pour responsabilité de regrouper l'ensemble des cases da
 
 Écrire la classe publique `Rangée` qui représente une rangée de case de notre plateau de jeu. Cette classe aura les caractéristiques suivantes :
 - Elle étend la classe `JPanel`.
-- Elle dispose une donnée membre privée nommée `pions` de type `CasePion[]` qui conserve toutes les cases constitutives de la rangée.
+- Elle dispose une donnée membre privée nommée `pions` de type `CaseJeu[]` qui conserve toutes les cases constitutives de la rangée.
 - Elle dispose d'une donnée membre privée nommée `taille` qui permet de connaitre le nombre de case dans la rangée.
 - Elle possède une méthode `void vider()` qui s'occupe d'enlever les pion (vider) des différentes cases.
 - Elle possède une méthode `void setMasqué(boolean enabled)` qui s'occupe de masquer/démasquer les pion des différentes cases.
 - Elle possède une méthode `void setEnabled(boolean enabled)` qui s'occupe d'activer/désactiver les pion des différentes cases.
 - Elle possède une méthode `void setCombinaison(Combinaison combinaison)` qui s'occupe de modifier les pion des différentes cases en fonction de la combinaison passée en argument.
 
-- Elle possède une méthode `Combinaison getCombinaison()` qui crée et retourne une combinaison de même taille que la rangée et qui parcours les `CasePion` pour y lire les pions contenus.
+- Elle possède une méthode `Combinaison getCombinaison()` qui crée et retourne une combinaison de même taille que la rangée et qui parcours les `CaseJeu` pour y lire les pions contenus.
 
 - Elle a un unique constructeur,`Rangée(int taille)` ,avec un argument argument. Ce constructeur doit initialiser les deux données membres. Ajouter un `GridLayout` avec une seule ligne et un nombre inconnu de colonne comme gestionnaire de disposition. Parcourir l'ensemble des cases et les rajouter à la rangée.
 
-### Implémentation des classes `Score`, `CaseScore` et `MarquageScore`
-Les classes `Score`, `CaseScore` et `MarquageScore` sont très similaires aux classes que l'on vient d'implémenter. Pour la suite du travail, vous aurez juste besoin d'utiliser la méthode `public void setScore(int nombrePionsBiensPlacés, int nombrePionsMalsPlacés)` et ` public void vider()` de la classe `MarquageScore`. Vous considérez donc en disposer.
+### Implémentation des classes `PionScore`, `CaseScore` et `MarquageScore`
+Les classes `PionScore`, `CaseScore` et `MarquageScore` sont très similaires aux classes que l'on vient d'implémenter. Pour la suite du travail, vous aurez juste besoin d'utiliser la méthode `public void setScore(int nombrePionsBiensPlacés, int nombrePionsMalsPlacés)` et ` public void vider()` de la classe `MarquageScore`. Vous considérez donc en disposer.
 
 ### Implémentation de la classe `Plateau`
 Cette classe est celle qui permet d'implémenter toute la logique du jeu. Elle est celle qui 
