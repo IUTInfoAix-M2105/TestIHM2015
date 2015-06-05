@@ -127,8 +127,8 @@ La classe `MastermindIHM` représente la fenêtre principale du Jeu. En plus du 
 
 1. Écrire la déclaration d’une classe `MastermindIHM`, sous-classe de `JFrame`, réduite, pour commencer, à 
 ses variables d’instance, toutes privées :
-    -`TAILLE_RANGEE` de type `int` représente la taille d'une rangée
-    -`TAILLE_PLATEAU` de type `int` représente la taille du plateau en nombre de rangées.
+    - `TAILLE_RANGEE` de type `int` représente la taille d'une rangée
+    - `TAILLE_PLATEAU` de type `int` représente la taille du plateau en nombre de rangées.
     - `panelBas` de type `JPanel` est l'objet contenant les boutons de validation et d'effacement.
     - `panelHaut` de type `JPanel` est l'objet contenant la rangée à deviner.
     - `plateau` de type `Plateau` est l'objet plateau de jeu
