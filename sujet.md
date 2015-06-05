@@ -98,3 +98,48 @@ La classe `Rangée` à pour responsabilité de regrouper l'ensemble des cases da
 - Elle possède une méthode `Combinaison getCombinaison()` qui crée et retourne une combinaison de même taille que la rangée et qui parcours les `CasePion` pour y lire les pions contenus.
 
 - Elle a un unique constructeur,`Rangée(int taille)` ,avec un argument argument. Ce constructeur doit initialiser les deux données membres. Ajouter un `GridLayout` avec une seule ligne et un nombre inconnu de colonne comme gestionnaire de disposition. Parcourir l'ensemble des cases et les rajouter à la rangée.
+
+### Implémentation de la classe `Plateau`
+Cette classe est celle qui permet d'implémenter toute la logique du jeu. Elle est celle qui 
+demanderait le plus de travail dans une implémentation complète. Dans votre cas, vous n'aurez pas à implémenter 
+les méthodes qui calculeront le nombre de pions biens ou mals placés. Vous suposerez donc que vous disposer de deux méthodes qui remplissent cet office(`int calculerNombrePionsMalsPlacés(Combinaison combinaisonSecrète)` et `int calculerNombrePionsBiensPlacés(Combinaison combinaisonSecrète)`).
+
+1. Écrire la classe `Plateau` qui dérive de `JPanel`. Cette classe aura les données membres privées suivantes : 
+     - `nombrePionsParRangée` de type `int` qui mémorise la taille d'une rangée du plateau de jeu.
+     - `nombreRangées` de type `int` qui mémorise le nombre de rangées du plateau de jeu.
+     - `rangées` est un tableau `nombreRangées` `Rangée` qui représente le plateau de jeu.
+     - `scores` est un tableau `nombreRangées` `MarquageScore` qui représente la colone de marquage de pions biens/mals placés.
+     - `rangéeCourante` de type `int` qui mémorise l'indice de la rangée actuellement jouée.
+     - `aGagné` de type `boolean` qui mémorise si le dernier coup était gagnant.
+2. Écrire le constructeur `Plateau(int nombreRangées, int nombrePionsParRangée)` qui initialise toute les données membres. Qui définit un gestionnaire de placement de type grille avec deux colonnes et un nombre indéterminé de lignes. Chaque rangée et chaque score devra être ajouté dans le bon ordre au plateau de jeu. Seule la première ligne devra être activée en début de partie(`setEnabled(true)`).
+2. Écrire la méthode `private void vider()` qui parcourt toutes les rangées et tous les scores un par un pour les vider.
+3. Écrire la méthode `private void viderRangéeCourante()` qui vide uniquement la rangée courante.
+4. Ecrire la méthode `public int nombreDeCoupsJoués()` qui retourne le nombre de coups joués depuis le début de la partie.
+5. Écrire la méthode `public boolean aGagné()` qui retourne le booléen indiquant si le dernier coup est gagnant.
+6. Écrire la méthode `public boolean aPerdu()` qui retourne un booléen indiquant si le dernier coup est perdant.
+7. Écrire la méthode `public boolean estFinDePartie()` qui retourne un booléen indiquant si la partie est terminée.
+8. Écrire la méthode `public void nouvellePartie()` qui réinitialise le plateau de jeu en vidant les scores, les rangées et en activant uniquement la première rangée.
+9. Écrire la méthode `void validerRangéeCourante(Combinaison combinaisonSecrète)` qui a pour responsabilité de valider une combinaison passée en paramêtre, de calculer les scores et de mettre à jour le booléens `aGagné` et la donnée membre `rangéeCourante`. C'est cette méthode qui doit s'occuper de désactiver la rangée qui vient d'être jouée et d'activer la suivante.
+
+
+### Implémentation de la classe `MastermindIHM`
+La classe `MastermindIHM` représente la fenêtre principale du Jeu. En plus du plateau situé au centre, cette fenêtre contient une barre de menu, un panel en haut contenant une rangée de pion matérialisant la combinaison à trouver et un panel en bas contenant deux boutons qui permettent de valider un coup ou d'effacer la dernière combinaison non validée. La barre de menu contient un menu "Action" constitué d'une entrée "Nouvelle Partie" et d'une entrée "Quitter".
+
+1. Écrire la déclaration d’une classe `MastermindIHM`, sous-classe de `JFrame`, réduite, pour commencer, à 
+ses variables d’instance, toutes privées :
+    -`TAILLE_RANGEE` de type `int` représente la taille d'une rangée
+    -`TAILLE_PLATEAU` de type `int` représente la taille du plateau en nombre de rangées.
+    - `panelBas` de type `JPanel` est l'objet contenant les boutons de validation et d'effacement.
+    - `panelHaut` de type `JPanel` est l'objet contenant la rangée à deviner.
+    - `plateau` de type `Plateau` est l'objet plateau de jeu
+2. Écrire la méthode  `private JMenuBar barreDeMenus()` qui s'occupe de créer la barre de menu.
+3. Écrire le constructeur par défaut de la classe `MastermindIHM`. Ce constructeur devra :
+    - Modifier le titre de la fenêtre en "Mastermind".
+    - Définir que l'application devra se terminer quand on fermera la fenêtre.
+    - Ajouter un `BorderLayout` comme gestionnaire de disposition.
+    - Ajouter la barre de menu.
+    - Placer le plateau au centre de la fenêtre.
+    - Placer le `panelBas` au sud de la fenêtre (la construction de ce panel se fait avec la méthode `creerPanelValidationRangéeCourante()` que vous n'avez pas à implémenter).
+    - Placer le `panelHaut` au nord de la fenêtre (la construction de ce panel se fait avec la méthode `creerPanelCombinaisonSecrète()` que vous n'avez pas à implémenter).
+    - Demander à la fenêtre de prendre sa taille optimale et la rendre visible.
+5. Écrivez une méthode `main` aussi réduite que possible pour lancer l’exécution de tout cela. 
