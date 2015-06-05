@@ -1,18 +1,18 @@
-#Test d'IHM et langage Java
+#Test du module M2105 (IHM et langage Java)
 
 **Test du samedi 6 juin 2015 – Durée 2 heures – Documents autorisés**
 
 L'objet de ce test est l'écriture en Java de l'IHM d'une version simplifiée du jeu Mastermind. Le Mastermind est un jeu de société pour deux joueurs dont le but est de trouver une combinaison de couleurs.
 
-Il se présente sous la forme d'un plateau perforé de 10 rangées de quatre trous pouvant accueillir des pions de couleurs.
+Il se présente sous la forme d'un plateau perforé de 10 rangées de quatre trous pouvant accueillir des pions de couleur.
 
-Le nombre de pions de couleurs différentes est de 8 et les huit couleurs sont généralement : rouge ; jaune ; vert ; bleu ; orange ; marron ; violet ; fuchsia.
+Il y a huit couleurs de pions de jeu, généralement : rouge, jaune, vert, bleu, orange, marron, violet et fushia.
 
-Il y a également des pions de score blancs et rouges (ou noirs) utilisés pour donner des indications à chaque étape du jeu.
+Il y a également des pions de score blancs et rouges (parfois noirs), qui sont utilisés pour donner des indications à chaque étape du jeu.
 
 ## Règles du jeu
 
-Dans ce jeu, les joueur endossent à tour de role un comportement actif ou passif. Un des deux joueur commence par placer son choix de pions sans qu'ils soient vus de l'autre joueur à l'arrière d'un cache qui les masquera à la vue de celui-ci jusqu'à la fin de la manche. Ce joeur sera appelé joueur passif car une fois la combinaison choisie, il est surtout dans un rôle d'attente.
+Dans ce jeu, les joueur endossent à tour de rôle un comportement actif ou passif. Un des deux joueur commence par placer son choix de pions sans qu'ils soient vus de l'autre joueur à l'arrière d'un cache qui les masquera à la vue de celui-ci jusqu'à la fin de la manche. Ce joueur sera appelé joueur passif car une fois la combinaison choisie, il est surtout dans un rôle d'attente.
 
 Le joueur qui n'a pas sélectionné les pions doit trouver quels sont les quatre pions, c'est-à-dire leurs couleurs et positions. Ce joueur est désigné comme joueur actif.
 
