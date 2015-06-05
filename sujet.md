@@ -2,7 +2,7 @@
 
 **Test du samedi 6 juin 2015 – Durée 2 heures – Documents autorisés**
 
-L'objet de ce test est l'écriture en Java de l'IHM d'une version simplifiée du jeu Mastermind. Le Mastermind est un jeu de société pour deux joueurs dont le but est de trouver un code. C'est un jeu de réflexion, et de déduction, inventé par Mordecai Meirowitz dans les années 1970.
+L'objet de ce test est l'écriture en Java de l'IHM d'une version simplifiée du jeu Mastermind. Le Mastermind est un jeu de société pour deux joueurs dont le but est de trouver une combinaison de couleurs.
 
 Il se présente sous la forme d'un plateau perforé de 10 rangées de quatre trous pouvant accueillir des pions de couleurs.
 
@@ -64,3 +64,9 @@ Pour réaliser le plateau de jeu, il nous faut des boutons sur lesquels on pourr
 
 Écrire la classe publique `CasePion` qui représente les boutons de notre plateau de jeu. Cette classe aura les caractéristiques suivantes :
 - Elle étend la classe `JButton`.
+- Elle dispose une donnée membre privée nommée `pion` mémorisant le pion déposé sur la case. 
+- Elle possède un accèsseur et un modifieur publics pour cette donnée membre. Le modifieur à la responsabilité de changer l'icone de la case (avec la méthode `setIcon(ImageIcon icon)` héritée de la classe `JButton`).
+- Elle possède une méthode `public void vider()` qui s'occupe d'enlever le pion de la case (penser à `Pion.VIDE`).
+- Elle dispose d'une donnée membre `boutonPionListener` du type `ActionListener`. Son initialisation sera faite en même temps que sa déclaration avec une classe anonyme qui surchagera la méthode `void actionPerformed(ActionEvent actionEvent)`. Cette surcharge fera en sorte qu'à chaque action sur une case, le pion déposé dessus passe au `suivant`.
+- Elle a un unique constructeur sans argument, qui vide la case, lui affecte un auditeur d'événements (l'`ActionListener` précédement créé), par défaut la case est inactive (avec `setEnabled(Boolean b)`).
+
