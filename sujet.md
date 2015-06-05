@@ -35,11 +35,11 @@ Votre travail dans la suite de ce sujet sera d'écrire pas à pas plusieurs clas
 - Un objet `Plateau` représente le plateau de jeu composé des 10 rangées de 4 case.
 - Un objet `Pion` représente le pion que le joueur actif déposera dans une case.
 - Un objet `CasePion` représente une case du plateau de jeu où le joueur actif pourra déposer un pion.
+- Un objet `Combinaison` permet de manipuler une combinaison de couleur.
 - Un objet `Rangée` permet de regrouper les cases dans lesquels le joueur actif propose ses combinaisons de couleurs.
 - Un objet `Score` représente le pion de score que le joueur passif déposera dans une case.
 - Un objet `CaseScore` représente une case du plateau de jeu où le joueur passif pourra déposer un pion de score.
 - Un objet `MarquageScore` permet de regrouper les cases dans lesquels le joueur passif donne les indications sur la  combinaison proposée par le joueur actif.
-- Un objet `Combinaison` permet de manipuler une combinaison de couleur.
 
 Il y aura aussi plusieurs classes de moindre importance qui serviront d'outils pour les classes principales.
 
@@ -56,7 +56,7 @@ La classe `Pion` permet de représenter les pions de couleurs utilisés par le j
 1. Écrire la classe `Pion` ayant pour commencer, une seule donnée membre privée. Elle se nommera `icon` de type `Icon` permettra de conserver l'image affichée dans les cases.
 2. Écrire le constructeur `Pion(String fileName)` qui crée l'`ImageIcon` à partir du nom de fichier passé en paramètre.
 3. Écrire l'accésseur `public Icon getIcon()` qui retourne la donnée membre `icon`.
-3. Les couleurs de pion étant connus à l'avance (`ROUGE`, `BLEU`, `FUCHSIA`, `JAUNE`, `MARRON`, `ORANGE`, `VERT` et `VIOLET`), leur création peut être faite de manière statique. Pour éviter d'avoir à complexifier notre code avec des valeurs nulles, un pion virtuel (`VIDE`) sera ajouté. Écrire la déclaration statiques des 9 couleurs de pions  (`ROUGE`, `BLEU`, `FUCHSIA`, ...) qui devront utiliser les images appelées "rouge.png", "bleu.png", "fuchsia.png", ... .
+3. Les couleurs de pion étant connus à l'avance (`ROUGE`, `BLEU`, `FUCHSIA`, `JAUNE`, `MARRON`, `ORANGE`, `VERT` et `VIOLET`), leur création peut être faite de manière statique. Pour éviter d'avoir à complexifier notre code avec des valeurs nulles, un pion virtuel (`VIDE`) sera ajouté. Écrire la déclaration statiques des 3 première couleurs de pions  (`ROUGE`, `BLEU`, `FUCHSIA`) qui devront utiliser les images appelées "rouge.png", "bleu.png", "fuchsia.png". Pour la suite on considèrera que toutes les données membres ont été correctement initialisées.
 4. Écrire la méthode `public Pion suivant()` qui retourne le pion `BLEU` si le pion est `ROUGE` et `FUCHSIA` si le pion est `BLEU` et ainsi de suite. Pour vous faciliter l'écriture de cette méthode, il peut être astucieux de stocker vos pions précédement crée dans un tableau.
 
 ### Implémentation de la classe `CasePion`
@@ -66,7 +66,35 @@ Pour réaliser le plateau de jeu, il nous faut des boutons sur lesquels on pourr
 - Elle étend la classe `JButton`.
 - Elle dispose une donnée membre privée nommée `pion` mémorisant le pion déposé sur la case. 
 - Elle possède un accèsseur et un modifieur publics pour cette donnée membre. Le modifieur à la responsabilité de changer l'icone de la case (avec la méthode `setIcon(ImageIcon icon)` héritée de la classe `JButton`).
-- Elle possède une méthode `public void vider()` qui s'occupe d'enlever le pion de la case (penser à `Pion.VIDE`).
+- Elle possède une méthode `void vider()` qui s'occupe d'enlever le pion de la case (penser à `Pion.VIDE`).
+- Elle possède une méthode `void setMasqué(boolean masqué)` qui s'occupe de masquer/démasquer le pion contenu dans la case. Cette méthode sera utilisée par le joueur passif pour masquer sa combinaison et la montrer en fin de partie.
 - Elle dispose d'une donnée membre `boutonPionListener` du type `ActionListener`. Son initialisation sera faite en même temps que sa déclaration avec une classe anonyme qui surchagera la méthode `void actionPerformed(ActionEvent actionEvent)`. Cette surcharge fera en sorte qu'à chaque action sur une case, le pion déposé dessus passe au `suivant`.
 - Elle a un unique constructeur sans argument, qui vide la case, lui affecte un auditeur d'événements (l'`ActionListener` précédement créé), par défaut la case est inactive (avec `setEnabled(Boolean b)`).
 
+### Implémentation de la classe `Combinaison`
+Pour pouvoir implémenter la logique du jeu, il faut disposer d'une abstraction permettant de comparer deux combinaisons de pion de couleur. 
+
+1. Écrire la classe publique `Combinaison` ayant deux données membres privée. La première appelée `taille` sera de type `int` et permettra de connaitre le nombre de pions qui constitue la combinaison. La seconde appelée `pions` sera un tableau de `Pion` qui conservera les couleurs constitutives de la combinaison.
+2. Écrire le constructeur `Combinaison(int taille)` qui initialise correctement les deux données membres. Par défaut, la combinaison sera vide (penser `Pion.VIDE`).
+3. Écrire l'accesseur et le modifieur associés à la donnée membre privée `pions`.
+4. Écrire l'accesseur de la donnée membre `taille`.
+4. Écrire la méthode publique `boolean contient(Pion pion)` qui permet de savoir si un Pion appartient à une combinaison.
+
+Pour la suite, on supose que l'on disposera de la méthode de classe `static Combinaison genererCombinaisonAléatoire(int taille)` qui permet comme son nom l'indique de générer une combinaison aléatoire.
+
+
+### Implémentation de la classe `Rangée`
+La classe `Rangée` à pour responsabilité de regrouper l'ensemble des cases dans lesquels le joueur peut déposer une combinaison de couleur. 
+
+Écrire la classe publique `Rangée` qui représente une rangée de case de notre plateau de jeu. Cette classe aura les caractéristiques suivantes :
+- Elle étend la classe `JPanel`.
+- Elle dispose une donnée membre privée nommée `pions` de type `CasePion[]` qui conserve toutes les cases constitutives de la rangée.
+- Elle dispose d'une donnée membre privée nommée `taille` qui permet de connaitre le nombre de case dans la rangée.
+- Elle possède une méthode `void vider()` qui s'occupe d'enlever les pion (vider) des différentes cases.
+- Elle possède une méthode `void setMasqué(boolean enabled)` qui s'occupe de masquer/démasquer les pion des différentes cases.
+- Elle possède une méthode `void setEnabled(boolean enabled)` qui s'occupe d'activer/désactiver les pion des différentes cases.
+- Elle possède une méthode `void setCombinaison(Combinaison combinaison)` qui s'occupe de modifier les pion des différentes cases en fonction de la combinaison passée en argument.
+
+- Elle possède une méthode `Combinaison getCombinaison()` qui crée et retourne une combinaison de même taille que la rangée et qui parcours les `CasePion` pour y lire les pions contenus.
+
+- Elle a un unique constructeur,`Rangée(int taille)` ,avec un argument argument. Ce constructeur doit initialiser les deux données membres. Ajouter un `GridLayout` avec une seule ligne et un nombre inconnu de colonne comme gestionnaire de disposition. Parcourir l'ensemble des cases et les rajouter à la rangée.
