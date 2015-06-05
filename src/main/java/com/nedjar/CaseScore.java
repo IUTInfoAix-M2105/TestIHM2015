@@ -5,22 +5,22 @@ import javax.swing.*;
 /**
  * Created by nedjar on 04/06/15.
  */
-public class BoutonScore extends JButton {
+public class CaseScore extends JButton {
 
-    private Score score;
+    private PionScore score;
 
-    public BoutonScore() {
+    public CaseScore() {
         vider();
         setEnabled(false);
     }
 
-    void setScore(Score score) {
+    void setScore(PionScore score) {
         this.score = score;
         setIcon(score.getIcon());
         setDisabledIcon(score.getIcon());
     }
 
     public void vider() {
-        setScore(Score.VIDE);
+        setScore(PionScore.VIDE);
     }
 }

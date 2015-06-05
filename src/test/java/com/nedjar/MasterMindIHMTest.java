@@ -5,16 +5,16 @@ import junit.framework.TestCase;
 import junit.framework.TestSuite;
 
 /**
- * Unit test for simple MasterMind.
+ * Unit test for simple MasterMindIHM.
  */
-public class MasterMindTest
+public class MasterMindIHMTest
         extends TestCase {
     /**
      * Create the test case
      *
      * @param testName name of the test case
      */
-    public MasterMindTest(String testName) {
+    public MasterMindIHMTest(String testName) {
         super(testName);
     }
 
@@ -22,7 +22,7 @@ public class MasterMindTest
      * @return the suite of tests being tested
      */
     public static Test suite() {
-        return new TestSuite(MasterMindTest.class);
+        return new TestSuite(MasterMindIHMTest.class);
     }
 
     /**

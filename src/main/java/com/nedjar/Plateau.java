@@ -11,9 +11,9 @@ public class Plateau extends JPanel {
     private final int nombreRangées;
 
     private Rangée[] rangées;
-    private ScoreRangée[] scores;
+    private MarquageScore[] scores;
     private int rangéeCourante;
-    private boolean aGagné;
+    private boolean aGagné = false;
 
     public Plateau(int nombreRangées, int nombrePionsParRangée) {
 
@@ -21,12 +21,12 @@ public class Plateau extends JPanel {
         this.nombreRangées = nombreRangées;
         this.nombrePionsParRangée = nombrePionsParRangée;
         this.rangées = new Rangée[nombreRangées];
-        this.scores = new ScoreRangée[nombreRangées];
+        this.scores = new MarquageScore[nombreRangées];
 
         setLayout(new GridLayout(nombreRangées, 2));
         for (int i = nombreRangées - 1; i >= 0; i--) {
             rangées[i] = new Rangée(nombrePionsParRangée);
-            scores[i] = new ScoreRangée(nombrePionsParRangée);
+            scores[i] = new MarquageScore(nombrePionsParRangée);
 
             add(rangées[i]);
             JPanel panel = new JPanel();

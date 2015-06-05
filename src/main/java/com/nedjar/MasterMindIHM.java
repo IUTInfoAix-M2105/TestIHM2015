@@ -8,7 +8,7 @@ import java.awt.event.ActionListener;
 /**
  * Hello world!
  */
-public class MasterMind extends JFrame {
+public class MasterMindIHM extends JFrame {
 
     private static final int NB_RANGEES = 8;
     private static final int NB_PIONS_PAR_RANGEES = 4;
@@ -18,10 +18,10 @@ public class MasterMind extends JFrame {
     private Rangée rangéeSecrète;
 
 
-    private MasterMind() {
+    private MasterMindIHM() {
         super();
         setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
-        setTitle("MasterMind");
+        setTitle("MasterMindIHM");
         setLayout(new BorderLayout());
 
         setJMenuBar(barreDeMenus());
@@ -35,7 +35,7 @@ public class MasterMind extends JFrame {
     }
 
     public static void main(String[] args) {
-        new MasterMind();
+        new MasterMindIHM();
     }
 
     private JPanel creerPanelCombinaisonSecrète() {
@@ -72,7 +72,7 @@ public class MasterMind extends JFrame {
         boutonValider.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                if (plateau.combinaisonCourante().contient(Pion.VIDE)) {
+                if (plateau.combinaisonCourante().contient(PionJeu.VIDE)) {
                     return;
                 }
                 plateau.validerRangéeCourante(combinaisonSecrète);

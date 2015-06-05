@@ -5,7 +5,7 @@ import javax.swing.*;
 /**
  * Created by nedjar on 04/06/15.
  */
-public enum Score {
+public enum PionScore {
     VIDE("pasdemarque.png"),
     BIENPLACE("bienplace.png"),
     MALPLACE("malplace.png");
@@ -13,7 +13,7 @@ public enum Score {
     private String nomFichier;
     private ImageIcon icon;
 
-    Score(String nomFichier) {
+    PionScore(String nomFichier) {
         if (nomFichier != null)
             this.nomFichier = nomFichier;
         else

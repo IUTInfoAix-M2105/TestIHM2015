@@ -5,7 +5,7 @@ import javax.swing.*;
 /**
  * Created by nedjar on 04/06/15.
  */
-public enum Pion {
+public enum PionJeu {
     VIDE("vide.png"),
     ROUGE("rouge.png"),
     BLEU("bleu.png"),
@@ -19,7 +19,7 @@ public enum Pion {
     private String nomFichier;
     private Icon icon;
 
-    Pion(String nomFichier) {
+    PionJeu(String nomFichier) {
         if (nomFichier != null)
             this.nomFichier = nomFichier;
         else
@@ -33,7 +33,7 @@ public enum Pion {
         return icon;
     }
 
-    public Pion suivant() {
-        return Pion.values()[(ordinal() + 1) % Pion.values().length];
+    public PionJeu suivant() {
+        return PionJeu.values()[(ordinal() + 1) % PionJeu.values().length];
     }
 }

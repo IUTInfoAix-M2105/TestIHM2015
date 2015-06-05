@@ -7,21 +7,21 @@ import java.awt.*;
  * Created by nedjar on 04/06/15.
  */
 public class Rangée extends JPanel {
-    private final int nombrePionsParRangée;
-    private BoutonPion[] pions;
+    private final int taille;
+    private CaseJeu[] pions;
 
-    public Rangée(int nombrePionsParRangée) {
-        this.nombrePionsParRangée = nombrePionsParRangée;
-        this.pions = new BoutonPion[nombrePionsParRangée];
-        this.setLayout(new GridLayout(1, nombrePionsParRangée, 0, 0));
+    public Rangée(int taille) {
+        this.taille = taille;
+        this.pions = new CaseJeu[taille];
+        this.setLayout(new GridLayout(1, taille, 0, 0));
         for (int i = 0; i < pions.length; i++) {
-            pions[i] = new BoutonPion();
+            pions[i] = new CaseJeu();
             add(pions[i]);
         }
     }
 
     public Combinaison getCombinaison() {
-        Combinaison combinaison = new Combinaison(nombrePionsParRangée);
+        Combinaison combinaison = new Combinaison(taille);
         for (int i = 0; i < pions.length; i++) {
             combinaison.setPion(i, pions[i].getPion());
         }
@@ -35,19 +35,19 @@ public class Rangée extends JPanel {
     }
 
     public void setEnabled(boolean enabled) {
-        for (BoutonPion pion : pions) {
+        for (CaseJeu pion : pions) {
             pion.setEnabled(enabled);
         }
     }
 
     public void setMasqué(boolean masqué) {
-        for (BoutonPion pion : pions) {
+        for (CaseJeu pion : pions) {
             pion.setMasqué(masqué);
         }
     }
 
     public void vider() {
-        for (BoutonPion pion : pions) {
+        for (CaseJeu pion : pions) {
             pion.vider();
         }
     }

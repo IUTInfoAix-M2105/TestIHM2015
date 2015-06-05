@@ -7,8 +7,8 @@ import java.awt.event.ActionListener;
 /**
  * Created by nedjar on 04/06/15.
  */
-public class BoutonPion extends JButton {
-    private Pion pion;
+public class CaseJeu extends JButton {
+    private PionJeu pion;
     private final ActionListener boutonPionListener = new ActionListener() {
         @Override
         public void actionPerformed(ActionEvent actionEvent) {
@@ -16,21 +16,21 @@ public class BoutonPion extends JButton {
         }
     };
 
-    public BoutonPion() {
+    public CaseJeu() {
         vider();
         addActionListener(boutonPionListener);
         setEnabled(false);
     }
 
     public void vider() {
-        setPion(Pion.VIDE);
+        setPion(PionJeu.VIDE);
     }
 
-    public Pion getPion() {
+    public PionJeu getPion() {
         return pion;
     }
 
-    void setPion(Pion pion) {
+    void setPion(PionJeu pion) {
         this.pion = pion;
         setIcon(pion.getIcon());
         setDisabledIcon(pion.getIcon());
@@ -38,7 +38,7 @@ public class BoutonPion extends JButton {
 
     public void setMasqué(boolean masqué) {
         if (masqué)
-            setDisabledIcon(Pion.VIDE.getIcon());
+            setDisabledIcon(PionJeu.VIDE.getIcon());
         else
             setDisabledIcon(pion.getIcon());
     }

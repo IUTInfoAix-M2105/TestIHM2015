@@ -7,38 +7,38 @@ import java.util.Random;
  * Created by nedjar on 04/06/15.
  */
 public class Combinaison {
-    private final int nombrePionsParRangée;
-    private Pion[] pions;
+    private final int taille;
+    private PionJeu[] pions;
 
-    public Combinaison(int nombrePionsParRangée) {
-        this.nombrePionsParRangée = nombrePionsParRangée;
-        this.pions = new Pion[nombrePionsParRangée];
+    public Combinaison(int taille) {
+        this.taille = taille;
+        this.pions = new PionJeu[taille];
         for (int i = 0; i < pions.length; i++) {
-            pions[i] = Pion.VIDE;
+            pions[i] = PionJeu.VIDE;
         }
     }
 
-    public static Combinaison genererCombinaisonAléatoire(int nombrePionsParRangée) {
-        Combinaison combinaison = new Combinaison(nombrePionsParRangée);
+    public static Combinaison genererCombinaisonAléatoire(int taille) {
+        Combinaison combinaison = new Combinaison(taille);
         Random random = new Random();
-        for (int i = 0; i < nombrePionsParRangée; i++) {
-            while (combinaison.pions[i] == Pion.VIDE) {
-                int indicePion = random.nextInt(nombrePionsParRangée);
-                combinaison.pions[i] = Pion.values()[indicePion];
+        for (int i = 0; i < taille; i++) {
+            while (combinaison.pions[i] == PionJeu.VIDE) {
+                int indicePion = random.nextInt(taille);
+                combinaison.pions[i] = PionJeu.values()[indicePion];
             }
         }
         return combinaison;
     }
 
-    public boolean contient(Pion pion) {
+    public boolean contient(PionJeu pion) {
         return Arrays.asList(pions).contains(pion);
     }
 
-    public Pion getPion(int i) {
+    public PionJeu getPion(int i) {
         return pions[i];
     }
 
-    public void setPion(int i, Pion pion) {
+    public void setPion(int i, PionJeu pion) {
         pions[i] = pion;
     }
 
