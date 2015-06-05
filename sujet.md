@@ -4,21 +4,23 @@
 
 L'objet de ce test est l'écriture en Java de l'IHM d'une version simplifiée du jeu Mastermind. Le Mastermind est un jeu de société pour deux joueurs dont le but est de trouver une combinaison de couleurs.
 
-Il se présente sous la forme d'un plateau perforé de 10 rangées de cases de jeu (ou trous) pouvant accueillir des pions de jeu.
+Il se présente sous la forme d'un plateau perforé de 10 *rangées* et d'une zone masquant la combinaison à trouver. Chaque rangée comporte 4 *cases de jeu* (ou trous) pouvant accueillir des *pions de jeu*.
 
-Il y a huit couleurs de pions de jeu, généralement : rouge, jaune, vert, bleu, orange, marron, violet et fushia.
+Il y a 8 couleurs de pions de jeu, généralement : rouge, jaune, vert, bleu, orange, marron, violet et fushia.
 
-Il y a également 4 cases de score associées à chaque rangée, et pouvant accueillir des pions de score blancs ou rouges (parfois noirs), qui sont utilisés pour donner des indications à chaque étape du jeu.
+Il y a également 4 *cases de score* associées à chaque rangée, et pouvant accueillir des *pions de score* qui sont utilisés pour donner des indications à chaque étape du jeu. Il y a 2 couleurs de pions de score : blanc et rouge (parfois noir).
+Notons que les pions de scrore rouges ne sont pas les mêmes que les pions de jeu rouges.
 
 ## Règles du jeu
 
-Dans ce jeu, les joueurs endossent à tour de rôle un comportement actif ou passif. Un des deux joueur commence par placer une combinaison de pions de son choix (éventuellement plusieurs pions de la même couleur) sans qu'ils soient vus de l'autre joueur à l'arrière d'un cache qui les masquera à la vue de celui-ci jusqu'à la fin de la manche. Ce joueur sera appelé joueur passif car une fois la combinaison choisie, il est surtout dans un rôle d'attente. Dans notre cas, l'ordinateur jouera entièrement le rôle du joueur passif.
+Dans ce jeu, les joueurs endossent à tour de rôle à chaque manche un comportement actif ou passif. Un des deux joueur commence par placer une combinaison de pions de son choix (éventuellement plusieurs pions de la même couleur) sans qu'ils soient vus de l'autre joueur à l'arrière d'un cache qui les masquera à la vue de celui-ci jusqu'à la fin de la manche. Ce joueur sera appelé joueur passif car une fois la combinaison choisie, il est surtout dans un rôle d'attente. *Dans notre cas, l'ordinateur jouera entièrement le rôle du joueur passif.*
 
-Le joueur qui n'a pas choisi la combinaison de départ (et pour qui elle est totalement inconnue) doit trouver la combinaison exacte, c'est à dire quelles sont les couleurs de ses pions, ainsi que leur position. Ce joueur est désigné comme joueur actif (dans notre cas, le seul joueur humain du jeu).
+Le joueur qui n'a pas choisi la combinaison de départ (et pour qui elle est totalement inconnue) doit trouver la combinaison exacte, c'est à dire quelles sont les couleurs de ses pions, ainsi que leur position. Ce joueur est désigné comme joueur actif.
+*Dans notre cas, c'est le seul joueur humain du jeu.*
 
 Pour cela, à chaque tour, le joueur actif doit se servir de pions de jeu pour remplir une rangée selon l'idée qu'il se fait de la combinaison de pions à trouver.
 
-Une fois une rangée remplie, le joueur passif (ordinateur) doit placer des pions de score à côté de cette rangée pour  indiquer :
+Une fois une rangée remplie, le joueur passif (ordinateur) doit placer des pions de score à côté de cette rangée pour indiquer :
 
 1. le nombre de pions de la bonne couleur et bien placés, en positionnant le même nombre de pions de score rouges ;
 2. le nombre de pions de la bonne couleur mais mal placés, en positionnant le même nombre de pions de score blancs.
@@ -34,12 +36,6 @@ Le joueur actif gagne cette manche s'il donne la bonne combinaison de pions sur 
 Vous allez écrire l'IHM d'un Mastermind en mode joueur unique, qui doit trouver la combinaison choisie aléatoirement par l'ordinateur. Aussi, pour simplifier la suite du sujet, nous utiliserons le terme ordinateur à la place de joueur passif, et simplement le terme joueur pour joueur actif.  
 
 ## Travail à réaliser
-L'objectif de ce test est d'évaluer votre capacité à écrire une IHM à l'aide du langage Java, les méthodes complexes 
-car trop algorithmiques n'auront pas à être implémentées. Vous pourrez retrouver une proposition de correction à l'adresse suivante : https://github.com/IUTInfoAix/TestIHM2015/
-
-Le résultat attendu devra ressembler à la fenêtre suivante :
-![IHM](screenshoot.png)
-
 Votre travail dans la suite de ce sujet sera d'écrire pas à pas plusieurs classes importantes :
 - Un objet `MastermindIHM` est une fenêtre de jeu où le joueur pourra jouer contre l'ordinateur ;
 - Un objet `Plateau` représente le plateau de jeu composé des 10 rangées de 4 cases de jeu et de 4 cases de score ;
