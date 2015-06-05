@@ -8,7 +8,7 @@ Il se présente sous la forme d'un plateau perforé de 10 rangées de cases de j
 
 Il y a huit couleurs de pions de jeu, généralement : rouge, jaune, vert, bleu, orange, marron, violet et fushia.
 
-Il y a également des cases de score pouvant accueillir des pions de score blancs ou rouges (parfois noirs), qui sont utilisés pour donner des indications à chaque étape du jeu.
+Il y a également 4 cases de score associées à chaque rangée, et pouvant accueillir des pions de score blancs ou rouges (parfois noirs), qui sont utilisés pour donner des indications à chaque étape du jeu.
 
 ## Règles du jeu
 
@@ -16,7 +16,7 @@ Dans ce jeu, les joueurs endossent à tour de rôle un comportement actif ou pas
 
 Le joueur qui n'a pas choisi la combinaison de départ (et pour qui elle est totalement inconnue) doit trouver la combinaison exacte, c'est à dire quelles sont les couleurs de ses pions, ainsi que leur position. Ce joueur est désigné comme joueur actif (dans notre cas, le seul joueur humain du jeu).
 
-Pour cela, à chaque tour, le joueur actif doit se servir de pions de jeu pour remplir une rangée selon l'idée qu'il se fait des pions dissimulés.
+Pour cela, à chaque tour, le joueur actif doit se servir de pions de jeu pour remplir une rangée selon l'idée qu'il se fait de la combinaison de pions à trouver.
 
 Une fois une rangée remplie, le joueur passif (ordinateur) doit placer des pions de score à côté de cette rangée pour  indiquer :
 
@@ -25,25 +25,25 @@ Une fois une rangée remplie, le joueur passif (ordinateur) doit placer des pion
 
 Notons que la position des pions de score est quelconque. 
 
-Il arrive donc, surtout en début de partie, que le joueur passif ne fasse rien concrètement (ne place aucun pion de score) si aucun pion placé par le joueur actif ne porte une couleur de la combinaison.
+Il arrive donc, surtout en début de partie, que le joueur passif ne fasse rien concrètement (ne place aucun pion de score) si aucun pion de jeu placé par le joueur actif ne porte une couleur de la combinaison.
 
 La tactique du joueur actif consiste à proposer une combinaison en fonction des coups précédents et de leur score, de manière à tirer le maximum d'information de la réponse du joueur passif, puisque le nombre de propositions est limité par le nombre de rangées de trous du jeu. Dans la plupart des cas, il s'efforce de se rapprocher le plus possible de la combinaison à trouver, compte tenu des réponses précédentes, mais il peut aussi former une combinaison dans le seul but de vérifier une partie des conclusions des coups précédents et de faire en conséquence la proposition la plus propice à la déduction d'une nouvelle information.
 
 Le joueur actif gagne cette manche s'il donne la bonne combinaison de pions sur la dernière rangée ou avant.
 
-Vous allez écrire l'IHM d'un mastermind en mode joueur unique, qui doit trouver la combinaison choisie aléatoirement par l'ordinateur. Aussi, pour simplifier la suite du sujet, nous utiliserons le terme ordinateur à la place de joueur passif, et simplement le terme joueur pour joueur actif.  
+Vous allez écrire l'IHM d'un Mastermind en mode joueur unique, qui doit trouver la combinaison choisie aléatoirement par l'ordinateur. Aussi, pour simplifier la suite du sujet, nous utiliserons le terme ordinateur à la place de joueur passif, et simplement le terme joueur pour joueur actif.  
 
 ## Travail à réaliser
 Votre travail dans la suite de ce sujet sera d'écrire pas à pas plusieurs classes importantes :
-- Un objet `MastermindIHM` est une fenêtre de jeu où le joueur pourra joueur contre l'ordinateur ;
-- Un objet `Plateau` représente le plateau de jeu composé des 10 rangées de 4 cases (trous) ;
-- Un objet `Pion` représente le pion que le joueur déposera dans une case ;
-- Un objet `CasePion` représente une case du plateau de jeu où le joueur pourra placer un pion ;
-- Un objet `Combinaison` permet de manipuler une combinaison de couleurs ;
-- Un objet `Rangée` permet de regrouper les cases dans lesquelles le joueur propose ses combinaisons de pions ;
-- Un objet `Score` représente un pion de score que l'ordinateur déposera dans une case de score ;
-- Un objet `CaseScore` représente une case de socre où l'ordinateur pourra déposer un pion de score ;
-- Un objet `MarquageScore` permet de regrouper les cases de score, où l'ordinateur donne les indications sur la  combinaison proposée par le joueur sur la rangée correspondante.
+- Un objet `MastermindIHM` est une fenêtre de jeu où le joueur pourra jouer contre l'ordinateur ;
+- Un objet `Plateau` représente le plateau de jeu composé des 10 rangées de 4 cases de jeu et de 4 cases de score ;
+- Un objet `PionJeu` représente une pion de jeu que le joueur pourra (devra) déposer dans une case de jeu ;
+- Un objet `CaseJeu` représente une case de jeu du plateau, où le joueur pourra placer un pion de jeu ;
+- Un objet `Combinaison` permet de générer et exploiter la combinaison à trouver ;
+- Un objet `RangéeJeu` permet de regrouper les cases de jeu d'une rangée, dans lesquelles le joueur propose une combinaison de pions ;
+- Un objet `PionScore` représente un pion de score que l'ordinateur déposera dans une case de score ;
+- Un objet `CaseScore` représente une case de score où l'ordinateur pourra déposer un pion de score ;
+- Un objet `MarquageScore` permet de regrouper les cases de score associées à une rangée, où l'ordinateur donne les indications sur la  combinaison proposée par le joueur sur la rangée de jeu correspondante.
 
 Il y aura aussi plusieurs classes de moindre importance qui serviront d'outils pour les classes principales.
 
