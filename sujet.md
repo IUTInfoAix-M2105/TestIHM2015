@@ -1,14 +1,14 @@
-#Test du module M2105 (IHM et langage Java)
+#Test du module M2105 (IHM en Java)
 
 **Test du samedi 6 juin 2015 – Durée 2 heures – Documents autorisés**
 
-L'objet de ce test est l'écriture en Java de l'IHM d'une version simplifiée du jeu Mastermind. Le Mastermind est un jeu de société pour deux joueurs dont le but est de trouver une combinaison de couleurs.
+L'objet de ce test est l'écriture en Java d'une IHM pour une version simplifiée du jeu Mastermind. Le Mastermind est un jeu de société pour deux joueurs dont le but est de trouver une combinaison de couleurs.
 
-Il se présente sous la forme d'un plateau perforé de 10 *rangées* et d'une zone masquant la combinaison à trouver. Chaque rangée comporte 4 *cases de jeu* (ou trous) pouvant accueillir des *pions de jeu*.
+Il se présente sous la forme d'un plateau perforé de 10 **rangées** et d'une zone masquant la combinaison à trouver. Chaque rangée comporte 4 **cases de jeu** (ou trous) pouvant accueillir des **pions de jeu**.
 
 Il y a 8 couleurs de pions de jeu, généralement : rouge, jaune, vert, bleu, orange, marron, violet et fushia.
 
-Il y a également 4 *cases de score* associées à chaque rangée, et pouvant accueillir des *pions de score* qui sont utilisés pour donner des indications à chaque étape du jeu. Il y a 2 couleurs de pions de score : blanc et rouge (parfois noir).
+Il y a également 4 **cases de score** associées à chaque rangée, et pouvant accueillir des **pions de score** qui sont utilisés pour donner des indications à chaque étape du jeu. Il y a 2 couleurs de pions de score : blanc et rouge (parfois noir).
 Notons que les pions de scrore rouges ne sont pas les mêmes que les pions de jeu rouges.
 
 ## Règles du jeu
