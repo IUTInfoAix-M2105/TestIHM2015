@@ -99,6 +99,9 @@ La classe `Rangée` à pour responsabilité de regrouper l'ensemble des cases da
 
 - Elle a un unique constructeur,`Rangée(int taille)` ,avec un argument argument. Ce constructeur doit initialiser les deux données membres. Ajouter un `GridLayout` avec une seule ligne et un nombre inconnu de colonne comme gestionnaire de disposition. Parcourir l'ensemble des cases et les rajouter à la rangée.
 
+### Implémentation des classes `Score`, `CaseScore` et `MarquageScore`
+Les classes `Score`, `CaseScore` et `MarquageScore` sont très similaires aux classes que l'on vient d'implémenter. Pour la suite du travail, vous aurez juste besoin d'utiliser la méthode `public void setScore(int nombrePionsBiensPlacés, int nombrePionsMalsPlacés)` et ` public void vider()` de la classe `MarquageScore`. Vous considérez donc en disposer.
+
 ### Implémentation de la classe `Plateau`
 Cette classe est celle qui permet d'implémenter toute la logique du jeu. Elle est celle qui 
 demanderait le plus de travail dans une implémentation complète. Dans votre cas, vous n'aurez pas à implémenter 
