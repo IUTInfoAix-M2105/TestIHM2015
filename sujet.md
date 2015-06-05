@@ -4,11 +4,11 @@
 
 L'objet de ce test est l'écriture en Java de l'IHM d'une version simplifiée du jeu Mastermind. Le Mastermind est un jeu de société pour deux joueurs dont le but est de trouver une combinaison de couleurs.
 
-Il se présente sous la forme d'un plateau perforé de 10 rangées de quatre trous (cases de jeu) pouvant accueillir des pions de jeu.
+Il se présente sous la forme d'un plateau perforé de 10 rangées de cases de jeu (ou trous) pouvant accueillir des pions de jeu.
 
 Il y a huit couleurs de pions de jeu, généralement : rouge, jaune, vert, bleu, orange, marron, violet et fushia.
 
-Il y a également des pions de score blancs et rouges (parfois noirs), qui sont utilisés pour donner des indications à chaque étape du jeu, et 
+Il y a également des cases de score pouvant accueillir des pions de score blancs ou rouges (parfois noirs), qui sont utilisés pour donner des indications à chaque étape du jeu.
 
 ## Règles du jeu
 
