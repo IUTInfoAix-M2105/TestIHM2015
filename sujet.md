@@ -4,51 +4,58 @@
 
 L'objet de ce test est l'écriture en Java d'une IHM pour une version simplifiée du jeu Mastermind. Le Mastermind est un jeu de société pour deux joueurs dont le but est de trouver une combinaison de couleurs.
 
-Il se présente sous la forme d'un plateau perforé de 10 **rangées** et d'une zone masquant la combinaison à trouver. Chaque rangée comporte 4 **cases de jeu** (ou trous) pouvant accueillir des **pions de jeu**.
+Il se présente sous la forme d'une zone masquant la combinaison de 4 couleurs à trouver et d'un plateau perforé de 10 **rangées**. Chaque rangée comporte 4 **cases de jeu** (ou trous) pouvant accueillir des **pions de jeu**.
 
 Il y a 8 couleurs de pions de jeu, généralement : rouge, jaune, vert, bleu, orange, marron, violet et fushia.
 
 Il y a également 4 **cases de score** associées à chaque rangée, et pouvant accueillir des **pions de score** qui sont utilisés pour donner des indications à chaque étape du jeu. Il y a 2 couleurs de pions de score : blanc et rouge (parfois noir).
+
 Notons que les pions de scrore rouges ne sont pas les mêmes que les pions de jeu rouges.
 
 ## Règles du jeu
 
-Dans ce jeu, les joueurs endossent à tour de rôle à chaque manche un comportement actif ou passif. Un des deux joueur commence par placer une combinaison de pions de son choix (éventuellement plusieurs pions de la même couleur) sans qu'ils soient vus de l'autre joueur à l'arrière d'un cache qui les masquera à la vue de celui-ci jusqu'à la fin de la manche. Ce joueur sera appelé joueur passif car une fois la combinaison choisie, il est surtout dans un rôle d'attente. *Dans notre cas, l'ordinateur jouera entièrement le rôle du joueur passif.*
+Dans ce jeu, les joueurs endossent à tour de rôle à chaque manche un comportement actif ou passif. Un des deux joueur commence par placer une combinaison de pions de son choix (éventuellement plusieurs pions de la même couleur) sans qu'ils soient vus de l'autre joueur à l'arrière d'un cache qui les masquera à la vue de celui-ci jusqu'à la fin de la manche. Ce joueur sera appelé joueur passif car une fois la combinaison choisie, il est surtout dans un rôle d'attente. **Dans notre cas, l'ordinateur jouera entièrement le rôle du joueur passif.**
 
 Le joueur qui n'a pas choisi la combinaison de départ (et pour qui elle est totalement inconnue) doit trouver la combinaison exacte, c'est à dire quelles sont les couleurs de ses pions, ainsi que leur position. Ce joueur est désigné comme joueur actif.
-*Dans notre cas, c'est le seul joueur humain du jeu.*
+**Dans notre cas, c'est le seul joueur humain du jeu.**
 
-Pour cela, à chaque tour, le joueur actif doit se servir de pions de jeu pour remplir une rangée selon l'idée qu'il se fait de la combinaison de pions à trouver.
+Pour cela, à chaque tour, le joueur actif doit se servir de pions de jeu pour remplir les cases de jeu de la premère  rangée disponible, selon l'idée qu'il se fait de la combinaison de pions à trouver.
 
-Une fois une rangée remplie, le joueur passif (ordinateur) doit placer des pions de score à côté de cette rangée pour indiquer :
+Une fois une rangée remplie, le joueur passif (ordinateur) doit placer des pions de score sur les cases de score de cette rangée pour indiquer :
 
 1. le nombre de pions de la bonne couleur et bien placés, en positionnant le même nombre de pions de score rouges ;
 2. le nombre de pions de la bonne couleur mais mal placés, en positionnant le même nombre de pions de score blancs.
 
-Notons que la position des pions de score est quelconque. 
+Notons que la position des pions de score est quelconque sur les cases de score. En d'autres termes, le joueur actif ne peut rien déduire de leur position. 
 
-Il arrive donc, surtout en début de partie, que le joueur passif ne fasse rien concrètement (ne place aucun pion de score) si aucun pion de jeu placé par le joueur actif ne porte une couleur de la combinaison.
+Il arrive donc, surtout en début de partie, que le joueur passif ne fasse rien concrètement (ne place aucun pion de score) si aucun pion de jeu placé par le joueur actif ne porte une couleur de la combinaison à trouver.
 
-La tactique du joueur actif consiste à proposer une combinaison en fonction des coups précédents et de leur score, de manière à tirer le maximum d'information de la réponse du joueur passif, puisque le nombre de propositions est limité par le nombre de rangées de trous du jeu. Dans la plupart des cas, il s'efforce de se rapprocher le plus possible de la combinaison à trouver, compte tenu des réponses précédentes, mais il peut aussi former une combinaison dans le seul but de vérifier une partie des conclusions des coups précédents et de faire en conséquence la proposition la plus propice à la déduction d'une nouvelle information.
+La tactique du joueur actif consiste à proposer une combinaison en fonction des coups précédents et de leur score, de manière à tirer le maximum d'information de la réponse du joueur passif, puisque le nombre de tentatives est limité par le nombre de rangées de jeu. Dans la plupart des cas, il s'efforce de se rapprocher le plus possible de la combinaison à trouver, compte tenu des réponses précédentes, mais il peut aussi former une combinaison dans le seul but de vérifier une partie des conclusions des coups précédents et de faire en conséquence la proposition la plus propice à la déduction d'une nouvelle information.
 
-Le joueur actif gagne cette manche s'il donne la bonne combinaison de pions sur la dernière rangée ou avant.
+Le joueur actif gagne cette manche s'il trouve la bonne combinaison de pions avant d'épuiser sa dernière rangée.
 
-Vous allez écrire l'IHM d'un Mastermind en mode joueur unique, qui doit trouver la combinaison choisie aléatoirement par l'ordinateur. Aussi, pour simplifier la suite du sujet, nous utiliserons le terme ordinateur à la place de joueur passif, et simplement le terme joueur pour joueur actif.  
 
-## Travail à réaliser
-Votre travail dans la suite de ce sujet sera d'écrire pas à pas plusieurs classes importantes :
-- Un objet `MastermindIHM` est une fenêtre de jeu où le joueur pourra jouer contre l'ordinateur ;
+## Schéma directeur du travail à réaliser
+Vous allez écrire une IHM d'un Mastermind en mode joueur unique, qui doit trouver la combinaison choisie aléatoirement par l'ordinateur. Aussi, pour simplifier la suite du sujet, nous utiliserons le terme *ordinateur* à la place de joueur passif, et simplement le terme *joueur* pour joueur actif.
+
+Cette IHM se présente sous la forme suivante :
+![IHM](screenshoot.png)
+
+L'objectif étant d'évaluer votre capacité à écrire une IHM à l'aide du langage Java, les méthodes complexes 
+car trop algorithmiques n'auront pas à être implémentées. 
+
+Votre travail dans la suite de ce sujet sera d'écrire (parfois partiellement) pas à pas plusieurs classes importantes :
+- Un objet `MastermindIHM` est une fenêtre de jeu où le joueur peut jouer contre l'ordinateur ;
+- Un objet `Combinaison` permet de générer et exploiter (masquer/afficher/tester) la combinaison à trouver ;
 - Un objet `Plateau` représente le plateau de jeu composé des 10 rangées de 4 cases de jeu et de 4 cases de score ;
-- Un objet `PionJeu` représente une pion de jeu que le joueur pourra (devra) déposer dans une case de jeu ;
-- Un objet `CaseJeu` représente une case de jeu du plateau, où le joueur pourra placer un pion de jeu ;
-- Un objet `Combinaison` permet de générer et exploiter la combinaison à trouver ;
+- Un objet `PionJeu` représente une pion de jeu que le joueur peut (doit) déposer dans une case de jeu ;
+- Un objet `CaseJeu` représente une case de jeu du plateau, où le joueur peut placer un pion de jeu ;
 - Un objet `RangéeJeu` permet de regrouper les cases de jeu d'une rangée, dans lesquelles le joueur propose une combinaison de pions ;
 - Un objet `PionScore` représente un pion de score que l'ordinateur déposera dans une case de score ;
 - Un objet `CaseScore` représente une case de score où l'ordinateur pourra déposer un pion de score ;
 - Un objet `MarquageScore` permet de regrouper les cases de score associées à une rangée, où l'ordinateur donne les indications sur la  combinaison proposée par le joueur sur la rangée de jeu correspondante.
 
 Il y aura aussi plusieurs classes de moindre importance qui serviront d'outils pour les classes principales.
-
 
 
 
